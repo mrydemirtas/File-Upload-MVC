@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model List<MVCFileUploadSample.Models.UploadTable>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetImages</title>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+
+</head>
+<body>
+    <div>
+
+        @foreach (var item in Model)
+        {
+            <a id="img_@item.ID" href="javascript:Delete(@item.ID)"><img src="@item.Url" alt="Alternate Text" /></a>
+
+        }
+    </div>
+</body>
+</html>
+
+<script>
+
+    function Delete(id) {
+        $.ajax({
+            url: "/Upload/Delete/" + id,
+            type: 'post',
+            success: function (res) {
+                $("#img_" + id).slideUp("2000");
+            },
+            beforeSend: function () {
+                //alert("siliniyor");
+            },
+            complete: function () {
+                //alert("silindi");
+            }
+        })
+    }
+
+</script>

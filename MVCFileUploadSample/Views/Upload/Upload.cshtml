@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Upload</title>
+</head>
+<body>
+    <div> 
+
+
+        @*<form enctype="multipart/form-data">
+            <input type="file" multiple name="name" value="" />
+        </form>*@
+
+
+        @using (Html.BeginForm("Upload","Upload",FormMethod.Post,new { @enctype = "multipart/form-data" }))
+        {
+            @Html.TextBox("myfile", null, new {@type="file" })
+            <input type="submit" name="name" value="Upload Et" />
+        }
+
+
+        
+        @using (Html.BeginForm("Multiple", "Upload",FormMethod.Post,new { @enctype = "multipart/form-data" }))
+        {
+            @Html.TextBox("myfiles", null, new {@type="file",@multiple=true })
+            <input type="submit" name="name" value="Upload Et" />
+        }
+
+    </div>
+</body>
+</html>
